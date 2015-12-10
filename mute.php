@@ -2,6 +2,8 @@
 
 $path = "mute";
 $id = $_POST["id"];
+echo "ID: " . $id;
+@mkdir($path);
 
 if (! empty($id) && is_numeric($id)) {
 	if (file_exists("$path/$id")) {
@@ -10,8 +12,7 @@ if (! empty($id) && is_numeric($id)) {
 		}
 	} else {
 		if (! file_put_contents("$path/$id", $_SERVER['REMOTE_ADDR'])) {
-			echo "here";
-			// http_response_code(400);
+			http_response_code(400);
 		}
 	}
 } else {

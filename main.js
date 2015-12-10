@@ -1,16 +1,14 @@
-$(document).ready(function() {
-	$('button').click(function() {
-		var that = $(this);
-		var action = $(this).text();
-		var id = $(this).attr('data-id');
-		console.log(action, id);
-		$.post("mute.php", {
-			id: id,
-			success: function() { that.text( action == "Mute" ? "Unmute" : "Mute" ); }
+window.addEventListener('load', function() {
+	var buttons = document.getElementsByTagName("button");
+	for (var i = 0; i < buttons.length; i++) {
+		buttons[i].addEventListener("click", function( event ) {
+			var r = new XMLHttpRequest();
+			r.open("POST", "mute.php", true);
+			r.onreadystatechange = function () {
+				if (r.readyState != 4 || r.status != 200) return;
+				console.log("Success: " + r.responseText);
+			};
+			r.send("id=1111");
 		});
-	});
-});
-
-$(document).ajaxError(function(event, request, settings) {
-	console.log("Error requesting page " + settings.url);
+	}
 });
