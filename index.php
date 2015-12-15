@@ -11,15 +11,16 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
-td.check { background-color: pink; }
 th { text-align: left; }
 label { display: block; }
+input[type=checkbox]:checked + label {
+	background-color: pink;
+}
 </style>
 </head>
 <body>
 
 <table>
-<caption>Registered home owners</caption>
 <thead>
 <tr>
 <th></th>
@@ -29,9 +30,9 @@ label { display: block; }
 </thead>
 <tbody>
 <?php foreach (array("1111", "2222", "3333") as $id) { ?>
-<tr <?php echo ((file_exists("mute/$id") ? "class=muted" : "")); ?>>
+<tr>
 <td>⚠</td>
-<td class=check><label><input type=checkbox></label></td>
+<td><input id="<?=$id?>" <?php echo (file_exists("arm/$id") ? "checked" : ""); ?> type=checkbox><label for="<?=$id?>">&nbsp;</label></td>
 <td><?=$id?></td>
 </tr>
 <?php } ?>
