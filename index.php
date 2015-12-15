@@ -9,12 +9,17 @@
 body { font-family: sans-serif; }
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
 }
 th { text-align: left; }
 label { display: block; }
-input[type=checkbox]:checked + label {
+td { position: relative; }
+input[type=checkbox]:checked + label::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
 	background-color: pink;
+  z-index: -1;
 }
 </style>
 </head>
