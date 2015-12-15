@@ -5,11 +5,11 @@ window.addEventListener('load', function() {
 			var that = this;
 			var id = this.getAttribute('data-id');
 			var r = new XMLHttpRequest();
-			r.open("POST", "mute.php", true);
+			r.open("POST", "arm.php", true);
 			r.onreadystatechange = function () {
 				if (r.readyState != 4 || r.status != 200) return;
 				var status = JSON.parse(r.responseText);
-				if (status.unmuted == id) {
+				if (status.unarmed == id) {
 					that.textContent = "Mute";
 				} else {
 					that.textContent = "Unmute";
