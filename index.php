@@ -12,13 +12,26 @@ table {
   width: 80%;
 }
 th { text-align: left; }
-label { display: block; }
+
 td { position: relative; }
-input[type=checkbox]:checked + label::before {
-  content: "";
+// CSS mastery by @cheeaun https://twitter.com/cheeaun/status/676737126973632516
+label{
+  display: block;
+  border: 1px solid pink;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+}
+input[type=checkbox]:checked:after{
+  content: '';
+  display: block;
   position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
-	background-color: pink;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: lightblue;
   z-index: -1;
 }
 </style>
@@ -37,7 +50,7 @@ input[type=checkbox]:checked + label::before {
 <?php foreach (array("1111", "2222", "3333") as $id) { ?>
 <tr>
 <td>⚠</td>
-<td><input id="<?=$id?>" <?php echo (file_exists("arm/$id") ? "checked" : ""); ?> type=checkbox><label for="<?=$id?>">&nbsp;</label></td>
+<td><label><input id="<?=$id?>" <?php echo (file_exists("arm/$id") ? "checked" : ""); ?> type=checkbox></label></td>
 <td><?=$id?></td>
 </tr>
 <?php } ?>
